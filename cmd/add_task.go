@@ -57,7 +57,7 @@ func AddTask() {
 	}
 
 	// write to task.json
-	if err := writeTasks(newTask); err != nil {
+	if err := upsertTask(newTask); err != nil {
 		fmt.Println("Error writing tasks:", err)
 		return
 	}

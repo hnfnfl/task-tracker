@@ -73,7 +73,7 @@ func UpdateTask() {
 	}
 
 	// write to task.json
-	if err := updateTasks(updatedTask); err != nil {
+	if err := upsertTask(updatedTask); err != nil {
 		fmt.Println("Error writing tasks:", err)
 		return
 	}

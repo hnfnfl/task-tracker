@@ -42,46 +42,29 @@ func readTasks() ([]Task, error) {
 	return tasks, nil
 }
 
-// write task to tasks.json
-func writeTasks(task Task) error {
-	existingTasks, err := readTasks()
-	if err != nil {
-		return err
-	}
-
-	existingTasks = append(existingTasks, task)
-
-	file, err := os.Create(tasksFile)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	encoder := json.NewEncoder(file)
-	err = encoder.Encode(existingTasks)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// update task in tasks.json
-func updateTasks(updatedTask Task) error {
+// upsert task in tasks.json
+func upsertTask(task Task) error {
 	tasks, err := readTasks()
 	if err != nil {
 		return err
 	}
 
-	// find and update the task
-	for i, task := range tasks {
-		if task.ID == updatedTask.ID {
-			tasks[i] = updatedTask
+	// find and update the task if it exists
+	found := false
+	for i, t := range tasks {
+		if t.ID == task.ID {
+			tasks[i] = task
+			found = true
 			break
 		}
 	}
 
-	// write updated tasks back to file
+	// if the task was not found, append it as a new task
+	if !found {
+		tasks = append(tasks, task)
+	}
+
+	// write tasks back to file
 	file, err := os.Create(tasksFile)
 	if err != nil {
 		return err
