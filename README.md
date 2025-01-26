@@ -18,7 +18,7 @@ A **Task Tracker** application is designed to help users manage and organize the
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/task-tracker.git
+git clone https://github.com/hnfnfl/task-tracker.git
 cd task-tracker
 ```
 
