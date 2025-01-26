@@ -6,13 +6,13 @@ import (
 	"os"
 )
 
-var (
-	todo       bool
-	inProgress bool
-	done       bool
-)
-
 func ListTasks() {
+	var (
+		todo       bool
+		inProgress bool
+		done       bool
+	)
+
 	// set up flag
 	listTaskCmd := flag.NewFlagSet("List all tasks", flag.ExitOnError)
 	listTaskCmd.BoolVar(&todo, "todo", false, "List all tasks that are todo")

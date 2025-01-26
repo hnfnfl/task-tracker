@@ -7,12 +7,12 @@ import (
 	"time"
 )
 
-var (
-	description string
-	timestamp   = time.Now().Format("2006-01-02 15:04:05")
-)
-
 func AddTask() {
+	var (
+		description string
+		timestamp   = time.Now().Format("2006-01-02 15:04:05")
+	)
+
 	// set up flag
 	addTaskCmd := flag.NewFlagSet("Add a new task", flag.ExitOnError)
 	addTaskCmd.StringVar(&description, "desc", "", "Description of the task")
