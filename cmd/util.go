@@ -149,3 +149,12 @@ func printTasks(tasks []Task) {
 
 	fmt.Println(sb.String())
 }
+
+func findTaskByID(tasks []Task, id int) (Task, bool) {
+	for _, task := range tasks {
+		if task.ID == id {
+			return task, true
+		}
+	}
+	return Task{}, false
+}

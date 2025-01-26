@@ -37,8 +37,7 @@ func main() {
 	case "list":
 		cmd.ListTasks()
 	case "mark-in-progress", "mark-done":
-		// TODO: Implement mark-in-progress and mark-done commands
-		// cmd.MarkTask()
+		cmd.MarkTask()
 	default:
 		flag.Usage()
 	}
