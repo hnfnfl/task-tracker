@@ -1,0 +1,33 @@
+# Task Tracker App
+
+A **Task Tracker** application is designed to help users manage and organize their daily tasks efficiently. This app includes features like task creation, categorization, updating, and deletion, ensuring an intuitive user experience.
+
+## Features
+
+- **Add Tasks:** Create new tasks with essential details such as title, description, due date, and priority.
+- **Update Tasks:** Edit task details as requirements change.
+- **Delete Tasks:** Remove tasks that are no longer needed.
+- **Categorization:** Organize tasks by categories (e.g., work, personal, etc.).
+- **Task Status:** Mark tasks as completed or pending.
+- **Search and Filter:** Find tasks easily by filtering based on criteria like status, category, or due date.
+
+## Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/task-tracker.git
+cd task-tracker
+```
+
+<!-- TODO: continue -->
+
+## 
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Start managing your tasks efficiently with the Task Tracker App! If you encounter any issues or have suggestions, feel free to open an issue on GitHub.
