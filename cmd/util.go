@@ -66,6 +66,37 @@ func writeTasks(task Task) error {
 	return nil
 }
 
+// update task in tasks.json
+func updateTasks(updatedTask Task) error {
+	tasks, err := readTasks()
+	if err != nil {
+		return err
+	}
+
+	// find and update the task
+	for i, task := range tasks {
+		if task.ID == updatedTask.ID {
+			tasks[i] = updatedTask
+			break
+		}
+	}
+
+	// write updated tasks back to file
+	file, err := os.Create(tasksFile)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	encoder := json.NewEncoder(file)
+	err = encoder.Encode(tasks)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // print task
 func printTasks(tasks []Task) {
 	var (

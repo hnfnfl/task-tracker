@@ -31,8 +31,7 @@ func main() {
 	case "add":
 		cmd.AddTask()
 	case "update":
-		// TODO: Implement update command
-		// cmd.UpdateTask()
+		cmd.UpdateTask()
 	case "delete":
 		// TODO: Implement delete command
 		// cmd.DeleteTask()
