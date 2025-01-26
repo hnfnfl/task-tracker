@@ -55,25 +55,19 @@ func UpdateTask() {
 		return
 	}
 
-	// update the task based on ID
-	var updatedTask Task
-	for _, task := range tasks {
-		if task.ID == id {
-			task.Description = description
-			task.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
-			updatedTask = task
-			break
-		}
-	}
-
-	// check if task is found
-	if updatedTask.ID == 0 {
+	// find the task by ID
+	task, found := findTaskByID(tasks, id)
+	if !found {
 		fmt.Println("Task ID not found")
 		return
 	}
 
+	// update the task
+	task.Description = description
+	task.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
+
 	// write to task.json
-	if err := upsertTask(updatedTask); err != nil {
+	if err := upsertTask(task); err != nil {
 		fmt.Println("Error writing tasks:", err)
 		return
 	}

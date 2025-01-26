@@ -68,22 +68,15 @@ func DeleteTask() {
 		return
 	}
 
-	// delete the task based on ID
-	found := false
-	for _, task := range tasks {
-		if task.ID == id {
-			found = true
-			break
-		}
-	}
-
+	// find the task with the given ID
+	task, found := findTaskByID(tasks, id)
 	if !found {
-		fmt.Println("Task ID not found")
+		fmt.Println("Task not found")
 		return
 	}
 
-	// write to task.json
-	if err := deleteTask(id, false); err != nil {
+	// delete the task based on ID
+	if err := deleteTask(task.ID, false); err != nil {
 		fmt.Println("Error writing tasks:", err)
 		return
 	}
