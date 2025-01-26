@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strings"
+	"text/tabwriter"
 )
 
 const (
@@ -125,9 +125,15 @@ func deleteTask(id int, all bool) error {
 // print task
 func printTasks(tasks []Task) {
 	var (
-		sb     strings.Builder
 		status string
 	)
+
+	// Create a new tabwriter
+	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', tabwriter.Debug)
+
+	// Print the header
+	fmt.Fprintln(w, "ID\tDescription\tStatus\tCreated At\tUpdated At\t")
+	fmt.Fprintln(w, "--\t-----------\t------\t----------\t----------\t")
 
 	for _, t := range tasks {
 		switch t.Status {
@@ -139,15 +145,11 @@ func printTasks(tasks []Task) {
 			status = "Done"
 		}
 
-		sb.WriteString("--------------------------------\n")
-		sb.WriteString(fmt.Sprintf("ID: %d\n", t.ID))
-		sb.WriteString(fmt.Sprintf("Description: %s\n", t.Description))
-		sb.WriteString(fmt.Sprintf("Status: %s\n", status))
-		sb.WriteString(fmt.Sprintf("Created At: %s\n", t.CreatedAt))
-		sb.WriteString(fmt.Sprintf("Updated At: %s\n", t.UpdatedAt))
+		// Print each task in a tab-separated format
+		fmt.Fprintf(w, "%d\t%s\t%s\t%s\t%s\t\n", t.ID, t.Description, status, t.CreatedAt, t.UpdatedAt)
 	}
 
-	fmt.Println(sb.String())
+	w.Flush()
 }
 
 func findTaskByID(tasks []Task, id int) (Task, bool) {
