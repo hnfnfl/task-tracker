@@ -80,6 +80,48 @@ func upsertTask(task Task) error {
 	return nil
 }
 
+// delete task from tasks.json
+func deleteTask(id int, all bool) error {
+	if all {
+		// truncate the file
+		file, err := os.Create(tasksFile)
+		if err != nil {
+			return err
+		}
+		defer file.Close()
+
+		return nil
+	}
+
+	tasks, err := readTasks()
+	if err != nil {
+		return err
+	}
+
+	// delete the task if it exists
+	for i, t := range tasks {
+		if t.ID == id {
+			tasks = append(tasks[:i], tasks[i+1:]...)
+			break
+		}
+	}
+
+	// write tasks back to file
+	file, err := os.Create(tasksFile)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	encoder := json.NewEncoder(file)
+	err = encoder.Encode(tasks)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // print task
 func printTasks(tasks []Task) {
 	var (

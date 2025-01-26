@@ -33,8 +33,7 @@ func main() {
 	case "update":
 		cmd.UpdateTask()
 	case "delete":
-		// TODO: Implement delete command
-		// cmd.DeleteTask()
+		cmd.DeleteTask()
 	case "list":
 		cmd.ListTasks()
 	case "mark-in-progress", "mark-done":
