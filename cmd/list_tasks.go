@@ -34,7 +34,7 @@ func ListTasks() {
 
 	// parse the command line arguments
 	if err := listTaskCmd.Parse(os.Args[2:]); err != nil {
-		fmt.Println("Error parsing command line arguments")
+		fmt.Println("Error parsing command line arguments:", err)
 		return
 	}
 

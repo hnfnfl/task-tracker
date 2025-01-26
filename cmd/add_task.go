@@ -31,7 +31,7 @@ func AddTask() {
 
 	// parse the command line arguments
 	if err := addTaskCmd.Parse(os.Args[2:]); err != nil {
-		fmt.Println("Error parsing command line arguments")
+		fmt.Println("Error parsing command line arguments:", err)
 		return
 	}
 
@@ -42,18 +42,21 @@ func AddTask() {
 		return
 	}
 
+	// set the ID of the new task object
+	newID := 1
+	for _, task := range tasks {
+		if task.ID >= newID {
+			newID = task.ID + 1
+		}
+	}
+
 	// create a new task object
 	newTask := Task{
-		ID:          1,
+		ID:          newID,
 		Description: description,
 		Status:      StatusEnum(Todo),
 		CreatedAt:   timestamp,
 		UpdatedAt:   timestamp,
-	}
-
-	// set the ID of the new task object
-	if len(tasks) > 0 {
-		newTask.ID = tasks[len(tasks)-1].ID + 1
 	}
 
 	// write to task.json

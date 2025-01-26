@@ -31,7 +31,7 @@ func DeleteTask() {
 
 	// parse the command line arguments
 	if err := deleteTaskCmd.Parse(os.Args[2:]); err != nil {
-		fmt.Println("Error parsing command line arguments")
+		fmt.Println("Error parsing command line arguments:", err)
 		return
 	}
 

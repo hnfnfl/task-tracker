@@ -47,10 +47,14 @@ func MarkTask() {
 	}
 
 	// update task status
-	if os.Args[1] == "mark-in-progress" {
-		task.Status = StatusEnum(InProgress)
-	} else {
-		task.Status = StatusEnum(Done)
+	switch os.Args[1] {
+	case "mark-in-progress":
+		task.Status = InProgress
+	case "mark-done":
+		task.Status = Done
+	default:
+		fmt.Println("Invalid command")
+		return
 	}
 	task.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
 
