@@ -9,9 +9,9 @@ A **Task Tracker** application is designed to help users manage and organize the
 - **Add Tasks:** Create new tasks with essential details such as title, description, due date, and priority.
 - **Update Tasks:** Edit task details as requirements change.
 - **Delete Tasks:** Remove tasks that are no longer needed.
-- **Categorization:** Organize tasks by categories (e.g., work, personal, etc.).
-- **Task Status:** Mark tasks as completed or pending.
-- **Search and Filter:** Find tasks easily by filtering based on criteria like status, category, or due date.
+- **Mark Tasks as Done:** Indicate tasks that have been completed.
+- **Mark Tasks as In Progress:** Change the status of tasks that are currently being worked on.
+- **List Tasks:** View all tasks, pending tasks, completed tasks, or tasks in progress.
 
 ## Getting Started
 
