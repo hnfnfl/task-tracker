@@ -68,7 +68,7 @@ func UpdateTask() {
 
 	// check if task is found
 	if updatedTask.ID == 0 {
-		fmt.Println("Task not found")
+		fmt.Println("Task ID not found")
 		return
 	}
 
